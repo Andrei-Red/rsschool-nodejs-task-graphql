@@ -1,13 +1,13 @@
-import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox';
+import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
 import {
   changeUserByIdSchema,
   createUserSchema,
   getUserByIdSchema,
   userSchema,
-} from './schemas.js';
+} from './schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { prisma, httpErrors } = fastify;
+  const { prisma, httpErrors } = fastify
 
   fastify.route({
     url: '/',
@@ -18,9 +18,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler() {
-      return prisma.user.findMany();
+      return prisma.user.findMany()
     },
-  });
+  })
 
   fastify.route({
     url: '/:userId',
@@ -37,13 +37,13 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
         where: {
           id: req.params.userId,
         },
-      });
+      })
       if (user === null) {
-        throw httpErrors.notFound();
+        throw httpErrors.notFound()
       }
-      return user;
+      return user
     },
-  });
+  })
 
   fastify.route({
     url: '/',

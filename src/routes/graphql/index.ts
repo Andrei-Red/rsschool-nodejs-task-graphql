@@ -1,6 +1,7 @@
-import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { createGqlResponseSchema, gqlResponseSchema } from './schemas.js';
-import { graphql } from 'graphql';
+import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
+import { createGqlResponseSchema, gqlResponseSchema, gqlSchema } from './schemas.js'
+import { graphql, parse, validate } from 'graphql';
+import depthLimit from 'graphql-depth-limit';
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
   fastify.route({

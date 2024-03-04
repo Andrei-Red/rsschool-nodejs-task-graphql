@@ -1,5 +1,5 @@
-import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import { prismaStatsSchema } from './schemas.js';
+import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox'
+import { prismaStatsSchema } from './schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
   fastify.route({
@@ -11,9 +11,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler() {
-      return fastify.prismaStats;
+      return fastify.prismaStats
     },
-  });
-};
+  })
+}
 
-export default plugin;
+export default plugin

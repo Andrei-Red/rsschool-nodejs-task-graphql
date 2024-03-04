@@ -1,13 +1,13 @@
-import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox';
+import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
 import {
   changePostByIdSchema,
   createPostSchema,
   getPostByIdSchema,
   postSchema,
-} from './schemas.js';
+} from './schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { prisma, httpErrors } = fastify;
+  const { prisma, httpErrors } = fastify
 
   fastify.route({
     url: '/',
@@ -18,9 +18,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler() {
-      return prisma.post.findMany();
+      return prisma.post.findMany()
     },
-  });
+  })
 
   fastify.route({
     url: '/:postId',
@@ -37,13 +37,13 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
         where: {
           id: req.params.postId,
         },
-      });
+      })
       if (post === null) {
-        throw httpErrors.notFound();
+        throw httpErrors.notFound()
       }
-      return post;
+      return post
     },
-  });
+  })
 
   fastify.route({
     url: '/',
@@ -57,9 +57,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
     async handler(req) {
       return prisma.post.create({
         data: req.body,
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/:postId',
@@ -74,9 +74,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       return prisma.post.update({
         where: { id: req.params.postId },
         data: req.body,
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/:postId',
@@ -88,14 +88,14 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler(req, reply) {
-      void reply.code(204);
+      void reply.code(204)
       await prisma.post.delete({
         where: {
           id: req.params.postId,
         },
-      });
+      })
     },
-  });
-};
+  })
+}
 
 export default plugin;

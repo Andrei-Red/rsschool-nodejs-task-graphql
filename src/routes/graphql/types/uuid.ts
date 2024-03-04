@@ -1,4 +1,4 @@
-import { GraphQLScalarType, Kind } from 'graphql';
+import { GraphQLNonNull, GraphQLScalarType, Kind } from 'graphql';
 
 const isUUID = (value: unknown): value is string =>
   typeof value === 'string' &&
@@ -29,3 +29,5 @@ export const UUIDType = new GraphQLScalarType({
     return undefined;
   },
 });
+
+export const UUIDTypeNonNull = new GraphQLNonNull(UUIDType);
