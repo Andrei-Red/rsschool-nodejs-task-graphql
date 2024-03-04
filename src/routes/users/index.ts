@@ -57,9 +57,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
     async handler(req) {
       return prisma.user.create({
         data: req.body,
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/:userId',
@@ -71,14 +71,14 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler(req, reply) {
-      void reply.code(204);
+      void reply.code(204)
       await prisma.user.delete({
         where: {
           id: req.params.userId,
         },
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/:userId',
@@ -93,9 +93,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       return prisma.user.update({
         where: { id: req.params.userId },
         data: req.body,
-      });
+      })
     },
-  });
-};
+  })
+}
 
-export default plugin;
+export default plugin

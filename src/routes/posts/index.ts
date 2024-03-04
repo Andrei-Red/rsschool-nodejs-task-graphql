@@ -98,4 +98,4 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
   })
 }
 
-export default plugin;
+export default plugin

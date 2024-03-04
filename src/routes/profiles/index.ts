@@ -1,13 +1,13 @@
-import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox';
+import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
 import {
   changeProfileByIdSchema,
   createProfileSchema,
   getProfileByIdSchema,
   profileSchema,
-} from './schemas.js';
+} from './schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { prisma, httpErrors } = fastify;
+  const { prisma, httpErrors } = fastify
 
   fastify.route({
     url: '/',
@@ -18,9 +18,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler() {
-      return prisma.profile.findMany();
+      return prisma.profile.findMany()
     },
-  });
+  })
 
   fastify.route({
     url: '/:profileId',
@@ -37,13 +37,13 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
         where: {
           id: req.params.profileId,
         },
-      });
+      })
       if (profile === null) {
-        throw httpErrors.notFound();
+        throw httpErrors.notFound()
       }
-      return profile;
+      return profile
     },
-  });
+  })
 
   fastify.route({
     url: '/',
@@ -57,9 +57,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
     async handler(req) {
       return prisma.profile.create({
         data: req.body,
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/:profileId',
@@ -74,9 +74,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       return prisma.profile.update({
         where: { id: req.params.profileId },
         data: req.body,
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/:profileId',
@@ -88,14 +88,14 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler(req, reply) {
-      void reply.code(204);
+      void reply.code(204)
       await prisma.profile.delete({
         where: {
           id: req.params.profileId,
         },
-      });
+      })
     },
-  });
-};
+  })
+}
 
-export default plugin;
+export default plugin

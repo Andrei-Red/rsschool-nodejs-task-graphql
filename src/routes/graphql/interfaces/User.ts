@@ -1,25 +1,25 @@
 export interface UserSubscribedTo {
-  userId: string;
-  authorId: string;
+  userId: string
+  authorId: string
 }
 
 export interface User {
-  id: string;
-  name: string;
-  balance: number;
+  id: string
+  name: string
+  balance: number
 }
 
 export interface CreateUser {
   dto: {
-    name: string;
-    balance: number;
-  };
+    name: string
+    balance: number
+  }
 }
 
 export interface ChangeUser {
-  id: string;
+  id: string
   dto: {
-    name: string;
-    balance: number;
-  };
+    name: string
+    balance: number
+  }
 }

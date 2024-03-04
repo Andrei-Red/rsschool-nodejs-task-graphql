@@ -35,7 +35,7 @@ export default fp(async (fastify) => {
 })
 
 function handlePrismaError(error: unknown) {
-  const info: { code: HttpErrorCodes ; mes: string } = {
+  const info: { code: HttpErrorCodes; mes: string } = {
     code: 502,
     mes: 'Unexpected database error.',
   }
@@ -56,12 +56,12 @@ function handlePrismaError(error: unknown) {
     info.code = 502
   }
 
-  throw new HttpCompatibleError(info.code, info.mes);
+  throw new HttpCompatibleError(info.code, info.mes)
 }
 
 declare module 'fastify' {
   export interface FastifyInstance {
-    prisma: PrismaClient;
-    prismaStats: Static<typeof prismaStatsSchema>;
+    prisma: PrismaClient
+    prismaStats: Static<typeof prismaStatsSchema>
   }
 }

@@ -1,33 +1,33 @@
-import { GraphQLNonNull, GraphQLScalarType, Kind } from 'graphql';
+import { GraphQLNonNull, GraphQLScalarType, Kind } from 'graphql'
 
 const isUUID = (value: unknown): value is string =>
   typeof value === 'string' &&
   new RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$').test(
     value,
-  );
+  )
 
 export const UUIDType = new GraphQLScalarType({
   name: 'UUID',
   serialize(value) {
     if (!isUUID(value)) {
-      throw new TypeError(`Invalid UUID.`);
+      throw new TypeError(`Invalid UUID.`)
     }
-    return value;
+    return value
   },
   parseValue(value) {
     if (!isUUID(value)) {
-      throw new TypeError(`Invalid UUID.`);
+      throw new TypeError(`Invalid UUID.`)
     }
-    return value;
+    return value
   },
   parseLiteral(ast) {
     if (ast.kind === Kind.STRING) {
       if (isUUID(ast.value)) {
-        return ast.value;
+        return ast.value
       }
     }
-    return undefined;
+    return undefined
   },
-});
+})
 
-export const UUIDTypeNonNull = new GraphQLNonNull(UUIDType);
+export const UUIDTypeNonNull = new GraphQLNonNull(UUIDType)

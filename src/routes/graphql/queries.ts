@@ -1,15 +1,15 @@
-import { GraphQLObjectType } from 'graphql/index.js';
+import { GraphQLObjectType } from 'graphql/index.js'
 
-import prismaClient from './prismaClient.js';
-import { UUIDType, UUIDTypeNonNull } from './types/uuid.js';
-import { UserType, UsersType } from './types/user.js';
-import { PostType, PostsType } from './types/post.js';
-import { ProfileType, ProfilesType } from './types/profile.js';
-import { MemberType, MemberTypeIdNonNull, MembersType } from './types/member.js';
-import { User } from './interfaces/User.js';
-import { Post } from './interfaces/Post.js';
-import { Profile } from './interfaces/Profile.js';
-import { Member } from './interfaces/Member.js';
+import prismaClient from './prismaClient.js'
+import { UUIDType, UUIDTypeNonNull } from './types/uuid.js'
+import { UserType, UsersType } from './types/user.js'
+import { PostType, PostsType } from './types/post.js'
+import { ProfileType, ProfilesType } from './types/profile.js'
+import { MemberType, MemberTypeIdNonNull, MembersType } from './types/member.js'
+import { User } from './interfaces/User.js'
+import { Post } from './interfaces/Post.js'
+import { Profile } from './interfaces/Profile.js'
+import { Member } from './interfaces/Member.js'
 
 export const Query = new GraphQLObjectType({
   name: 'Query',
@@ -65,4 +65,4 @@ export const Query = new GraphQLObjectType({
       resolve: async () => await prismaClient.memberType.findMany(),
     },
   }),
-});
+})

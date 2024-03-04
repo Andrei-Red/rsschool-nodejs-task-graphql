@@ -1,11 +1,11 @@
-import { GraphQLBoolean, GraphQLInt, GraphQLList, GraphQLObjectType } from 'graphql';
+import { GraphQLBoolean, GraphQLInt, GraphQLList, GraphQLObjectType } from 'graphql'
 
-import { UUIDType } from './uuid.js';
-import { UserType } from './user.js';
-import { MemberType, MemberTypeId } from './member.js';
+import { UUIDType } from './uuid.js'
+import { UserType } from './user.js'
+import { MemberType, MemberTypeId } from './member.js'
 
-import prismaClient from '../prismaClient.js';
-import { Profile } from '../interfaces/Profile.js';
+import prismaClient from '../prismaClient.js'
+import { Profile } from '../interfaces/Profile.js'
 
 export const ProfileType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Profile',
@@ -26,6 +26,6 @@ export const ProfileType: GraphQLObjectType = new GraphQLObjectType({
         await prismaClient.memberType.findFirst({ where: { id: memberTypeId } }),
     },
   }),
-});
+})
 
-export const ProfilesType = new GraphQLList(ProfileType);
+export const ProfilesType = new GraphQLList(ProfileType)

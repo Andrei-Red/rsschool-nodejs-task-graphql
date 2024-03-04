@@ -5,10 +5,10 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
-} from 'graphql';
-import { ProfilesType } from './profile.js';
-import prismaClient from '../prismaClient.js';
-import { Member } from '../interfaces/Member.js';
+} from 'graphql'
+import { ProfilesType } from './profile.js'
+import prismaClient from '../prismaClient.js'
+import { Member } from '../interfaces/Member.js'
 
 export const MemberTypeId = new GraphQLEnumType({
   name: 'MemberTypeId',
@@ -20,7 +20,7 @@ export const MemberTypeId = new GraphQLEnumType({
       value: 'business',
     },
   },
-});
+})
 
 export const MemberType: GraphQLObjectType  = new GraphQLObjectType({
   name: 'MemberType',
@@ -31,12 +31,12 @@ export const MemberType: GraphQLObjectType  = new GraphQLObjectType({
     profiles: {
       type: ProfilesType,
       resolve: async ({ id }: Member) => {
-        await prismaClient.profile.findMany({ where: { memberTypeId: id } });
+        await prismaClient.profile.findMany({ where: { memberTypeId: id } })
       },
     },
   }),
-});
+})
 
-export const MemberTypeIdNonNull = new GraphQLNonNull(MemberTypeId);
+export const MemberTypeIdNonNull = new GraphQLNonNull(MemberTypeId)
 
-export const MembersType = new GraphQLList(MemberType);
+export const MembersType = new GraphQLList(MemberType)

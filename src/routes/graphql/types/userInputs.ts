@@ -1,5 +1,5 @@
-import { GraphQLFloat, GraphQLNonNull, GraphQLString } from 'graphql';
-import { GraphQLInputObjectType } from 'graphql/index.js';
+import { GraphQLFloat, GraphQLNonNull, GraphQLString } from 'graphql'
+import { GraphQLInputObjectType } from 'graphql/index.js'
 
 export const CreateUserInputType = new GraphQLInputObjectType({
   name: 'CreateUserInput',
@@ -7,7 +7,7 @@ export const CreateUserInputType = new GraphQLInputObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     balance: { type: new GraphQLNonNull(GraphQLFloat) },
   }),
-});
+})
 
 export const ChangeUserInputType = new GraphQLInputObjectType({
   name: 'ChangeUserInput',
@@ -15,4 +15,4 @@ export const ChangeUserInputType = new GraphQLInputObjectType({
     name: { type: GraphQLString },
     balance: { type: GraphQLFloat },
   }),
-});
+})

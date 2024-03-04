@@ -1,11 +1,11 @@
-import { GraphQLFloat, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLFloat, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql'
 
-import { UUIDType } from './uuid.js';
-import { ProfileType } from './profile.js';
-import { PostsType } from './post.js';
+import { UUIDType } from './uuid.js'
+import { ProfileType } from './profile.js'
+import { PostsType } from './post.js'
 
-import prismaClient from '../prismaClient.js';
-import { User } from '../interfaces/User.js';
+import prismaClient from '../prismaClient.js'
+import { User } from '../interfaces/User.js'
 
 export const UserType: GraphQLObjectType = new GraphQLObjectType({
   name: 'User',
@@ -31,9 +31,9 @@ export const UserType: GraphQLObjectType = new GraphQLObjectType({
         const results = await prismaClient.subscribersOnAuthors.findMany({
           where: { subscriberId: id },
           select: { author: true },
-        });
+        })
 
-        return results.map((result) => result.author);
+        return results.map((result) => result.author)
       },
     },
 
@@ -43,11 +43,11 @@ export const UserType: GraphQLObjectType = new GraphQLObjectType({
         const results = await prismaClient.subscribersOnAuthors.findMany({
           where: { authorId: id },
           select: { subscriber: true },
-        });
-        return results.map((result) => result.subscriber);
+        })
+        return results.map((result) => result.subscriber)
       },
     },
   }),
-});
+})
 
 export const UsersType = new GraphQLList(UserType)

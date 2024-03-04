@@ -1,15 +1,15 @@
-import { GraphQLObjectType, GraphQLBoolean } from 'graphql';
-import prismaClient from './prismaClient.js';
-import { PostType } from './types/post.js';
-import { UUIDType } from './types/uuid.js';
-import { ChangePostInputType, CreatePostInputType } from './types/postInputs.js';
-import { ChangeProfileInputType, CreateProfileInputType } from './types/profileInputs.js';
-import { ProfileType } from './types/profile.js';
-import { UserType } from './types/user.js';
-import { ChangeUserInputType, CreateUserInputType } from './types/userInputs.js';
-import { ChangePost, CreatePost, Post } from './interfaces/Post.js';
-import { ChangeProfile, CreateProfile, Profile } from './interfaces/Profile.js';
-import { ChangeUser, CreateUser, User, UserSubscribedTo } from './interfaces/User.js';
+import { GraphQLObjectType, GraphQLBoolean } from 'graphql'
+import prismaClient from './prismaClient.js'
+import { PostType } from './types/post.js'
+import { UUIDType } from './types/uuid.js'
+import { ChangePostInputType, CreatePostInputType } from './types/postInputs.js'
+import { ChangeProfileInputType, CreateProfileInputType } from './types/profileInputs.js'
+import { ProfileType } from './types/profile.js'
+import { UserType } from './types/user.js'
+import { ChangeUserInputType, CreateUserInputType } from './types/userInputs.js'
+import { ChangePost, CreatePost, Post } from './interfaces/Post.js'
+import { ChangeProfile, CreateProfile, Profile } from './interfaces/Profile.js'
+import { ChangeUser, CreateUser, User, UserSubscribedTo } from './interfaces/User.js'
 
 export const Mutations = new GraphQLObjectType({
   name: 'Mutation',
@@ -34,12 +34,12 @@ export const Mutations = new GraphQLObjectType({
       args: { id: { type: UUIDType } },
       resolve: async (_parent, { id }: Post) => {
         try {
-          await prismaClient.post.delete({ where: { id } });
+          await prismaClient.post.delete({ where: { id } })
         } catch (err) {
-          return false;
+          return false
         }
 
-        return true;
+        return true
       },
     },
 
@@ -62,12 +62,12 @@ export const Mutations = new GraphQLObjectType({
       args: { id: { type: UUIDType } },
       resolve: async (_parent, { id }: Profile) => {
         try {
-          await prismaClient.profile.delete({ where: { id } });
+          await prismaClient.profile.delete({ where: { id } })
         } catch (err) {
-          return false;
+          return false
         }
 
-        return true;
+        return true
       },
     },
 
@@ -89,12 +89,12 @@ export const Mutations = new GraphQLObjectType({
       args: { id: { type: UUIDType } },
       resolve: async (_parent, { id }: User) => {
         try {
-          await prismaClient.user.delete({ where: { id: id } });
+          await prismaClient.user.delete({ where: { id: id } })
         } catch (err) {
-          return false;
+          return false
         }
 
-        return true;
+        return true
       },
     },
 
@@ -104,9 +104,9 @@ export const Mutations = new GraphQLObjectType({
       resolve: async (_parent, { userId, authorId }: UserSubscribedTo) => {
         await prismaClient.subscribersOnAuthors.create({
           data: { subscriberId: userId, authorId: authorId },
-        });
+        })
 
-        return await prismaClient.user.findFirst({ where: { id: userId } });
+        return await prismaClient.user.findFirst({ where: { id: userId } })
       },
     },
 
@@ -117,13 +117,13 @@ export const Mutations = new GraphQLObjectType({
         try {
           await prismaClient.subscribersOnAuthors.deleteMany({
             where: { subscriberId: userId, authorId: authorId },
-          });
+          })
         } catch {
-          return false;
+          return false
         }
 
-        return true;
+        return true
       },
     },
   }),
-});
+})

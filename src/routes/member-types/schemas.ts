@@ -1,4 +1,4 @@
-import { Type } from '@fastify/type-provider-typebox';
+import { Type } from '@fastify/type-provider-typebox'
 
 export enum MemberTypeId {
   BASIC = 'basic',
@@ -11,11 +11,11 @@ export const memberTypeFields = {
   }),
   discount: Type.Number(),
   postsLimitPerMonth: Type.Integer(),
-};
+}
 
 export const memberTypeSchema = Type.Object({
   ...memberTypeFields,
-});
+})
 
 export const getMemberTypeByIdSchema = {
   params: Type.Object(
@@ -26,4 +26,4 @@ export const getMemberTypeByIdSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
