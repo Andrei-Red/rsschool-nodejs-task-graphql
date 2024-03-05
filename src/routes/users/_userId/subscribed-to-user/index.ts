@@ -1,8 +1,8 @@
-import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox';
-import { getUserByIdSchema, userSchema } from '../../schemas.js';
+import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
+import { getUserByIdSchema, userSchema } from '../../schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { prisma } = fastify;
+  const { prisma } = fastify
 
   fastify.route({
     url: '/',
@@ -22,9 +22,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
             },
           },
         },
-      });
+      })
     },
-  });
-};
+  })
+}
 
-export default plugin;
+export default plugin

@@ -1,15 +1,15 @@
-import fp from 'fastify-plugin';
-import { PrismaClient } from '@prisma/client';
+import fp from 'fastify-plugin'
+import { PrismaClient } from '@prisma/client'
 import {
   PrismaClientKnownRequestError,
   PrismaClientRustPanicError,
   PrismaClientUnknownRequestError,
   PrismaClientValidationError,
-} from '@prisma/client/runtime/library.js';
-import { HttpCompatibleError } from './handle-http-error.js';
-import { HttpErrorCodes } from '@fastify/sensible/lib/httpError.js';
-import { Static } from '@sinclair/typebox';
-import { prismaStatsSchema } from '../routes/stats/schemas.js';
+} from '@prisma/client/runtime/library.js'
+import { HttpCompatibleError } from './handle-http-error.js'
+import { HttpErrorCodes } from '@fastify/sensible/lib/httpError.js'
+import { Static } from '@sinclair/typebox'
+import { prismaStatsSchema } from '../routes/stats/schemas.js'
 
 export default fp(async (fastify) => {
   const prisma = new PrismaClient({
@@ -22,46 +22,46 @@ export default fp(async (fastify) => {
           operation,
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           args,
-        });
-        return query(args).catch(handlePrismaError);
+        })
+        return query(args).catch(handlePrismaError)
       },
     },
-  }) as unknown as PrismaClient;
+  }) as unknown as PrismaClient
 
   fastify.decorate('prismaStats', {
     operationHistory: [],
-  });
-  fastify.decorate('prisma', prisma);
-});
+  })
+  fastify.decorate('prisma', prisma)
+})
 
 function handlePrismaError(error: unknown) {
   const info: { code: HttpErrorCodes; mes: string } = {
     code: 502,
     mes: 'Unexpected database error.',
-  };
+  }
 
   if (error instanceof PrismaClientKnownRequestError) {
-    info.mes = error.message;
-    info.code = 422;
+    info.mes = error.message
+    info.code = 422
   }
   if (error instanceof PrismaClientValidationError) {
-    info.mes = error.message;
-    info.code = 400;
+    info.mes = error.message
+    info.code = 400
   }
   if (
     error instanceof PrismaClientUnknownRequestError ||
     error instanceof PrismaClientRustPanicError
   ) {
-    info.mes = error.message;
-    info.code = 502;
+    info.mes = error.message
+    info.code = 502
   }
 
-  throw new HttpCompatibleError(info.code, info.mes);
+  throw new HttpCompatibleError(info.code, info.mes)
 }
 
 declare module 'fastify' {
   export interface FastifyInstance {
-    prisma: PrismaClient;
-    prismaStats: Static<typeof prismaStatsSchema>;
+    prisma: PrismaClient
+    prismaStats: Static<typeof prismaStatsSchema>
   }
 }

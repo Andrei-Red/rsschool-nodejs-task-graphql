@@ -1,8 +1,8 @@
-import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox';
-import { getMemberTypeByIdSchema, memberTypeSchema } from './schemas.js';
+import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
+import { getMemberTypeByIdSchema, memberTypeSchema } from './schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { prisma, httpErrors } = fastify;
+  const { prisma, httpErrors } = fastify
 
   fastify.route({
     url: '/',
@@ -13,9 +13,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler() {
-      return prisma.memberType.findMany();
+      return prisma.memberType.findMany()
     },
-  });
+  })
 
   fastify.route({
     url: '/:memberTypeId',
@@ -32,13 +32,13 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
         where: {
           id: req.params.memberTypeId,
         },
-      });
+      })
       if (memberType === null) {
-        throw httpErrors.notFound();
+        throw httpErrors.notFound()
       }
-      return memberType;
+      return memberType
     },
-  });
-};
+  })
+}
 
-export default plugin;
+export default plugin

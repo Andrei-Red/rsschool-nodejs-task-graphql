@@ -1,5 +1,5 @@
-import { Type } from '@fastify/type-provider-typebox';
-import { getUserByIdSchema, userFields } from '../../schemas.js';
+import { Type } from '@fastify/type-provider-typebox'
+import { getUserByIdSchema, userFields } from '../../schemas.js'
 
 export const subscribeToUserSchema = {
   params: getUserByIdSchema.params,
@@ -11,7 +11,7 @@ export const subscribeToUserSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
 
 export const unsubscribeFromUserSchema = {
   params: Type.Object(
@@ -23,4 +23,4 @@ export const unsubscribeFromUserSchema = {
       additionalProperties: false,
     },
   ),
-};
+}

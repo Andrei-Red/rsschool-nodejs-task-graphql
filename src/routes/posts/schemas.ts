@@ -1,5 +1,5 @@
-import { Type } from '@fastify/type-provider-typebox';
-import { userFields } from '../users/schemas.js';
+import { Type } from '@fastify/type-provider-typebox'
+import { userFields } from '../users/schemas.js'
 
 export const postFields = {
   id: Type.String({
@@ -8,11 +8,11 @@ export const postFields = {
   title: Type.String(),
   content: Type.String(),
   authorId: userFields.id,
-};
+}
 
 export const postSchema = Type.Object({
   ...postFields,
-});
+})
 
 export const getPostByIdSchema = {
   params: Type.Object(
@@ -23,7 +23,7 @@ export const getPostByIdSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
 
 export const createPostSchema = {
   body: Type.Object(
@@ -36,7 +36,7 @@ export const createPostSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
 
 export const changePostByIdSchema = {
   params: getPostByIdSchema.params,
@@ -49,4 +49,4 @@ export const changePostByIdSchema = {
       additionalProperties: false,
     },
   ),
-};
+}

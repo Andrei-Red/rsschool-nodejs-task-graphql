@@ -1,9 +1,9 @@
-import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox';
-import { postSchema } from '../../../posts/schemas.js';
-import { getPostsByUserIdSchema } from './schemas.js';
+import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
+import { postSchema } from '../../../posts/schemas.js'
+import { getPostsByUserIdSchema } from './schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { prisma } = fastify;
+  const { prisma } = fastify
 
   fastify.route({
     url: '/',
@@ -19,9 +19,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
         where: {
           authorId: req.params.userId,
         },
-      });
+      })
     },
-  });
-};
+  })
+}
 
-export default plugin;
+export default plugin

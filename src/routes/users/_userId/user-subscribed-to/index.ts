@@ -1,9 +1,9 @@
-import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox';
-import { subscribeToUserSchema, unsubscribeFromUserSchema } from './schemas.js';
-import { getUserByIdSchema, userSchema } from '../../schemas.js';
+import { FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
+import { subscribeToUserSchema, unsubscribeFromUserSchema } from './schemas.js'
+import { getUserByIdSchema, userSchema } from '../../schemas.js'
 
 const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
-  const { prisma } = fastify;
+  const { prisma } = fastify
 
   fastify.route({
     url: '/',
@@ -23,9 +23,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
             },
           },
         },
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/',
@@ -48,9 +48,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
             },
           },
         },
-      });
+      })
     },
-  });
+  })
 
   fastify.route({
     url: '/:authorId',
@@ -62,7 +62,7 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler(req, reply) {
-      void reply.code(204);
+      void reply.code(204)
       await prisma.subscribersOnAuthors.delete({
         where: {
           subscriberId_authorId: {
@@ -70,9 +70,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
             authorId: req.params.authorId,
           },
         },
-      });
+      })
     },
-  });
-};
+  })
+}
 
-export default plugin;
+export default plugin

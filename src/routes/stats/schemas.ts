@@ -1,4 +1,4 @@
-import { Type } from '@fastify/type-provider-typebox';
+import { Type } from '@fastify/type-provider-typebox'
 
 export const prismaStatsSchema = Type.Object({
   operationHistory: Type.Array(
@@ -8,4 +8,4 @@ export const prismaStatsSchema = Type.Object({
       args: Type.Any(),
     }),
   ),
-});
+})

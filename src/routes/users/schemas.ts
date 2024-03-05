@@ -1,4 +1,4 @@
-import { Type } from '@fastify/type-provider-typebox';
+import { Type } from '@fastify/type-provider-typebox'
 
 export const userFields = {
   id: Type.String({
@@ -6,11 +6,11 @@ export const userFields = {
   }),
   name: Type.String(),
   balance: Type.Number(),
-};
+}
 
 export const userSchema = Type.Object({
   ...userFields,
-});
+})
 
 export const getUserByIdSchema = {
   params: Type.Object(
@@ -21,7 +21,7 @@ export const getUserByIdSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
 
 export const createUserSchema = {
   body: Type.Object(
@@ -33,7 +33,7 @@ export const createUserSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
 
 export const changeUserByIdSchema = {
   params: getUserByIdSchema.params,
@@ -46,4 +46,4 @@ export const changeUserByIdSchema = {
       additionalProperties: false,
     },
   ),
-};
+}

@@ -1,6 +1,6 @@
-import { Type } from '@fastify/type-provider-typebox';
-import { memberTypeFields } from '../member-types/schemas.js';
-import { userFields } from '../users/schemas.js';
+import { Type } from '@fastify/type-provider-typebox'
+import { memberTypeFields } from '../member-types/schemas.js'
+import { userFields } from '../users/schemas.js'
 
 export const profileFields = {
   id: Type.String({
@@ -10,11 +10,11 @@ export const profileFields = {
   yearOfBirth: Type.Integer(),
   userId: userFields.id,
   memberTypeId: memberTypeFields.id,
-};
+}
 
 export const profileSchema = Type.Object({
   ...profileFields,
-});
+})
 
 export const getProfileByIdSchema = {
   params: Type.Object(
@@ -25,7 +25,7 @@ export const getProfileByIdSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
 
 export const createProfileSchema = {
   body: Type.Object(
@@ -39,7 +39,7 @@ export const createProfileSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
 
 export const changeProfileByIdSchema = {
   params: getProfileByIdSchema.params,
@@ -53,4 +53,4 @@ export const changeProfileByIdSchema = {
       additionalProperties: false,
     },
   ),
-};
+}
